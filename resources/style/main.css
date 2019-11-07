@@ -1,3 +1,5 @@
-header {
-  text-align: center;
-}
+body header {
+  text-align: center; }
+
+body #loginComponent {
+  text-align: center; }
