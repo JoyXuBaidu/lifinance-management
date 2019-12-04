@@ -1,5 +1,61 @@
-body header {
-  text-align: center; }
+html {
+  height: 100%; }
 
-body #loginComponent {
-  text-align: center; }
+body {
+  background-image: url("/images/login.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  font-family: KaiTi; }
+
+header {
+  position: absolute;
+  top: 40%;
+  left: 60%;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-weight: bolder;
+  font-size: 20px;
+  border-radius: .2em; }
+
+#loginComponent {
+  position: absolute;
+  top: 45%;
+  left: 60%;
+  height: 10em;
+  width: 10em; }
+  #loginComponent form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 10em; }
+    #loginComponent form input {
+      border-radius: .5em;
+      outline: none; }
+    #loginComponent form input[name=password] {
+      position: absolute;
+      top: 15%;
+      left: 0; }
+    #loginComponent form #loginButtons {
+      position: absolute;
+      bottom: 5em;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10em;
+      height: 5em; }
+      #loginComponent form #loginButtons button, #loginComponent form #loginButtons a {
+        position: absolute;
+        bottom: 5%;
+        border-radius: .3em;
+        outline: none; }
+      #loginComponent form #loginButtons button {
+        left: 10%; }
+      #loginComponent form #loginButtons a {
+        right: 10%;
+        text-decoration: none;
+        color: black;
+        font-weight: bolder;
+        background-color: rgba(255, 255, 255, 0.5); }
