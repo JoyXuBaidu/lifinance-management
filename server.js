@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 const mainRouter = require('./routes/main');
 const homeRouter = require('./routes/home');
+const registerRouter = require('./routes/register');
 
 const app =new express();
 
@@ -12,5 +13,6 @@ app.use(bodyParser.urlencoded({ extended: false })); // Get the body of request 
 
 app.use(mainRouter);
 app.use(homeRouter);
+app.use(registerRouter);
 
 app.listen(3000);

@@ -1,15 +1,18 @@
 //define local login component
 var loginComponent = {
   template: `
-  <form action="/action" method="POST">
+  <form action="/home" method="POST">
   <input type="text" placeholder="用户名" name="username">
   <input type="password" name="password">
-  <div id="loginButtons">
-  <button type="submit" id="loginButton">登录</button>
-  <a id="registerButton" href="/register">注册</a>
-  </div>
-  </form>`,
+  <button @click="login(username.value,password.value)" type="submit" id="loginButton">登录</button>
+  <a href="/register">注册</a>
+  </form>
+  `,
   methods: {
+    login: function (username,password){
+      const user = new user(username,password);
+      
+    }
   }
 }
 
