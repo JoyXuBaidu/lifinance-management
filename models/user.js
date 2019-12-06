@@ -16,7 +16,7 @@ function User (username, password) {
 User.prototype.register = function(user) {
   const filePath = path.join(path.dirname(process.mainModule.filename),'data','users.json');
   fs.readFile(filePath,function(err, fileContent) {
-    let users = [];
+    var users = [];
     if(!err) {
       users = JSON.parse(fileContent);
     }
@@ -30,12 +30,12 @@ User.prototype.register = function(user) {
 User.prototype.login = function(user,loginFail,loginSuccess) {
   const filePath = path.join(path.dirname(process.mainModule.filename),'data','users.json');
   fs.readFile(filePath,function(err, fileContent) {
-    let users = [];
+    var users = [];
     if(!err) {
       users = JSON.parse(fileContent);
     }
     console.log(user);
-    for(let i=0;i<users.length;i++) {
+    for(var i=0;i<users.length;i++) {
       if(users[i].username === user.username && users[i].password === user.password) {
         loginSuccess();
         return; // Prevent to trigger another response
