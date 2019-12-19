@@ -19,13 +19,11 @@ exports.postLoginToHome = function (req,res,next) {
         deleteRecordUrl: "/deleterecord/"+username
       }
     },
-    template: `
-    <div class="homeButtons">
-    <a v-bind:href="addRecordUrl">添加采购记录</a>
-    <a v-bind:href="listRecordUrl">查看采购记录</a>
-    <a v-if="isManager" v-bind:href="deleteRecordUrl">删除采购记录</a>
-    </div>
-    `
+    template: "<div class='homeButtons'>" +
+    "<a v-bind:href='addRecordUrl'>添加采购记录</a>"+
+    "<a v-bind:href='listRecordUrl'>查看采购记录</a>"+
+    "<a v-if='isManager' v-bind:href='deleteRecordUrl'>删除采购记录</a>"+
+    "</div>"
   }
   const homeComponent = new Vue({
         data: function() {
@@ -33,14 +31,12 @@ exports.postLoginToHome = function (req,res,next) {
               username: user.username
             }
           },
-        template:`
-        <div class="homePageWrapper">
-          <ul>
-            <li id="username">{{username}}</li>
-          </ul>
-          <sub-component></sub-component>
-        </div>
-        `,
+        template:"<div class='homePageWrapper'>"+
+          "<ul>"+
+            "<li id='username'>{{username}}</li>"+
+          "</ul>"+
+          "<sub-component></sub-component>"+
+        "</div>",
         components: {
           'sub-component':subComponent
         }
