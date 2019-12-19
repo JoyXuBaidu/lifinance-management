@@ -10,7 +10,7 @@ const renderer = require('vue-server-renderer').createRenderer({
 exports.postLoginToHome = function (req,res,next) {
   const user = new User(req.body.username,req.body.password);
   const username = user.username;
-  const subComponent = {
+  var subComponent = {
     data : function(){
       return {
         isManager:true,
