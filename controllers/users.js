@@ -13,17 +13,6 @@ exports.getLoginToHome = function (req,res,next) {
     next();
 };
 
-exports.postLoginToHome = function (req,res,next) {
-  const user = new User(req.body.username,req.body.password);
-  user.login(user,
-    function(){
-      res.redirect("/")
-    },
-    function(){
-      res.send("登录成功！")
-    });
-};
-
 exports.getRegisterInfo = function(req,res,next) {
   res.sendFile(path.join(__dirname,'../','views','register.html'));
 }

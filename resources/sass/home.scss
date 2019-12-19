@@ -1,0 +1,43 @@
+header {
+  text-align: center;
+}
+
+.homePageWrapper ul {
+  padding: 0;
+}
+
+#username {
+  text-align: center;
+}
+
+.homeButtons {
+  position: relative;
+  width: 100%;
+  height: 55px;
+}
+
+.homeButtons a {
+  position: absolute;
+  color: #ffffff;
+  width: 176px;
+  height: 55px;
+  padding: 15px;
+  background-color: #1976a1;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  top: 0;
+}
+
+.homeButtons a:first-child {
+  left: 20%;
+}
+
+.homeButtons a:nth-child(2) {
+  left: 43%;
+}
+
+.homeButtons a:nth-child(3) {
+  right: 20%;
+}
