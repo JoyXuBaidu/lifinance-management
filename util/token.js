@@ -25,6 +25,7 @@ exports.validToken = async (username)=> {
   jwt.verify(usertoken[0][0].token,KEY,(err)=> {
     if(err) {
       console.log(err);
+      db.execute(`update buyer set token=null where name='${username}';`)
       throw err;
     }
     else {
