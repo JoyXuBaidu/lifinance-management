@@ -1,0 +1,13 @@
+@import 'inner';
+
+header,#addrecords {
+  @extend %text-align-center;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 10px;
+  input{
+    width: 200px;
+  }
+}

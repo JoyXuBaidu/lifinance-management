@@ -1,0 +1,8 @@
+header, #addrecords {
+  text-align: center; }
+
+li {
+  list-style: none;
+  margin-bottom: 10px; }
+  li input {
+    width: 200px; }

@@ -1,43 +1,41 @@
-header {
-  text-align: center;
-}
+@import 'inner';
 
+//Homepage overall
 .homePageWrapper ul {
   padding: 0;
 }
 
+//Welcome
 #username {
-  text-align: center;
+  @extend %text-align-center;
 }
 
+//Homepage Table
+#homeTable {
+  margin: 0 auto;
+  display: table;
+  border-color: $button-blue;
+  border-collapse: collapse;
+  th,td {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0.5rem;
+    @extend %text-align-center;
+  }
+}
+
+//Home Buttons
 .homeButtons {
-  position: relative;
-  width: 100%;
-  height: 55px;
+  @extend %text-align-center;
+  margin-top: 30px;
 }
 
 .homeButtons a {
-  position: absolute;
   color: #ffffff;
-  width: 176px;
-  height: 55px;
   padding: 15px;
   background-color: #1976a1;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
-  text-align: center;
-  top: 0;
-}
-
-.homeButtons a:first-child {
-  left: 20%;
-}
-
-.homeButtons a:nth-child(2) {
-  left: 43%;
-}
-
-.homeButtons a:nth-child(3) {
-  right: 20%;
+  @extend %text-align-center;
 }

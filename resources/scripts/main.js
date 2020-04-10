@@ -1,3 +1,4 @@
+localStorage.removeItem('token');
 //define local login component
 var loginComponent = {
   template: `

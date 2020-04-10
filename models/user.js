@@ -1,8 +1,7 @@
 /*Represent Each User Info
   Export User Class 
 */
-const fs = require("fs");
-const path = require("path");
+const db = require('../util/database');
 
 //ALL IN ES5
 module.exports = User;
@@ -12,34 +11,21 @@ function User (username, password) {
 }
 
 User.prototype.register = function(user) {
-  const filePath = path.join(path.dirname(process.mainModule.filename),'data','users.json');
-  fs.readFile(filePath,function(err, fileContent) {
-    var users = [];
-    if(!err) {
-      users = JSON.parse(fileContent);
-    }
-    users.push(user);
-    fs.writeFile(filePath,JSON.stringify(users),function(err) {
-      if(err) {
-        console.log("???"+err);
-      }
-    });
-  })
+  const userName = user.username;
+  const userPassword = user.password; 
+ 
+  return db.execute(`insert into buyer (name,password) values ('${userName}','${userPassword}');`);
 }
 
 User.prototype.login = function(user,loginFail,loginSuccess) {
-  const filePath = path.join(path.dirname(process.mainModule.filename),'data','users.json');
-  fs.readFile(filePath,function(err, fileContent) {
-    var users = [];
-    if(!err) {
-      users = JSON.parse(fileContent);
+  const res=db.execute(`select * from buyer where name="${user.username}" and password="${user.password}";`);
+  res.then(data =>{
+    if(data[0].length>0){
+      loginSuccess();
+      return;
     }
-    for(var i=0;i<users.length;i++) {
-      if(users[i].username === user.username && users[i].password === user.password) {
-        loginSuccess();
-        return; // Prevent to trigger another response
-      }
+    else {
+      loginFail();
     }
-    loginFail();
   })
 }

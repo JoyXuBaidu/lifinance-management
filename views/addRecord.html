@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>No.1 Promary School FMS</title>
+  <script src="/scripts/library/jquery-3.1.1.min.js"></script>
   <script charset="utf-8" src="/scripts/library/vue-2.5.17.js"></script>
   <script charset="utf-8" src="/scripts/library/vuex-3.1.1.js"></script>
-  <script src="/scripts/library/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/style/core.css">
-  <link rel="stylesheet" type="text/css" href="/style/home.css">
+  <link rel="stylesheet" type="text/css" href="/style/addrecord.css">
 </head>
 <body>
-  <div id="homeComponent">
-    <!--vue-ssr-outlet-->
+  <header>采购信息录入</header>
+  <div id="addrecords">
+    <add-record-component></add-record-component>
   </div>
+  <script charset="utf-8" src="/scripts/addRecord.js"></script>
 </body>
-<script charset="utf-8" src="/scripts/home.js"></script>
 </html>
