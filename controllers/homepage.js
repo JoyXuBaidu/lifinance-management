@@ -3,17 +3,20 @@ const fs = require('fs');
 const path = require('path');
 
 const User = require("../models/user");
-const db = require('../util/database');
 const tokenHelper = require("../util/token");
+const Record = require('../models/record');
 const renderer = require('vue-server-renderer').createRenderer({
   template: fs.readFileSync(path.join(__dirname,'../','views','home.html'), 'utf-8')
 });
 
+const recordHelper = new Record();
 exports.getLoginToHome = async function(req,res,next) {
   const username = req.params.userId;
-  await tokenHelper.validToken(username).catch(()=>{res.redirect('/');});
+  let flag =false;
+  await tokenHelper.returnToMainPage(req.params.userId,res).catch(()=>{flag= true;});
+  if(flag) return;
   let records;
-  await db.execute(`select * from records where buyerName='${username}';`).then((res)=>{records = res[0];}).catch(err => {console.log(err);});
+  await recordHelper.getRecords(username).then((res)=>{records = res[0];}).catch(err => {console.log(err);});
   var subComponent = {
     data : function(){
       return {
@@ -81,11 +84,13 @@ exports.postLoginToHome =async function (req,res,next) {
   const user = new User(req.body.username,req.body.password);
   const username = user.username;
   let records,token;
-  await db.execute(`select token from buyer where name='${username}';`).then(res => {token=res[0][0].token;}).catch(err => {console.log(err);});
+  await tokenHelper.getToken(username).then(res => {token=res[0][0].token;}).catch(err => {console.log(err);});
   if(token!=null) {
-    await tokenHelper.validToken(username).catch(()=>{res.redirect('/');});
+    let flag =false;
+    await tokenHelper.returnToMainPage(req.params.userId,res).catch(()=>{flag= true;});
+    if(flag) return;
   }
-  await db.execute(`select * from records where buyerName='${username}';`).then((res)=>{records = res[0];}).catch(err => {console.log(err);});
+  await recordHelper.getRecords(username).then((res)=>{records = res[0];}).catch(err => {console.log(err);});
   var subComponent = {
     data : function(){
       return {
@@ -154,9 +159,8 @@ exports.postLoginToHome =async function (req,res,next) {
           return;
         }; 
         if(token==null) {
-          const usertoken = tokenHelper.generateToken();
-          await db.execute(`update buyer set token='${usertoken}' where name='${username}'`)
-          res.append('Set-Cookie',usertoken);//注入token,方便客户端通过cookie获取
+          tokenHelper.setToken(username);
+          //res.append('Set-Cookie',usertoken);//注入token,方便客户端通过cookie获取
         }
         res.send(html); // html 将是注入应用程序内容的完整页面
       })
